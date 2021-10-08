@@ -6,7 +6,6 @@ from src.data import analyzer
 import discord
 import asyncio
 
-
 logger.info("Initiating discord client")
 activity = discord.Game("Sending trade ideas")
 client = discord.Client(activity=activity)
@@ -23,6 +22,7 @@ def init():
 		logger.info('We have logged in as {0.user}'.format(client))
 
 		logger.info("Preparing PM list")
+		# Todo: users could be extended to be a class, to allow different users to track different stocks
 		for user in defines.get("PM_LIST"):
 			users.append(await client.fetch_user(user))
 
@@ -30,10 +30,20 @@ def init():
 
 		logger.info(f"Data: {data}")
 		logger.info("Sending out data")
-		for data_ in data:
-			for user in users:
-				# await asyncio.sleep(0.33)  # not necessary?
-				await user.send(data_)
+
+		formatted_stocks_data = "\n".join([data_ for data_ in data])
+
+		# todo: this should be refactored, pure spaghetti
+
+		text = f"""
+			S&P 500 NH-NL: {analyzer.get_snp500_nh_nl_data()} ({analyzer.get_yesterdays_nhnl()}) \n\n
+			Trade Ideas: \n{formatted_stocks_data}\n\n
+		"""
+
+		data_embed = discord.Embed(title="Daily Report", description=text, colour=discord.Colour(0x3239dc))
+
+		for user in users:
+			await user.send(embed=data_embed)
 
 		if len(data) == 0:
 			for user in users:

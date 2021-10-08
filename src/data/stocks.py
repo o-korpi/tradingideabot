@@ -1,6 +1,5 @@
 stocks = [
 	"PDX.ST",
-	"SES.ST",
 	"VOLAB.ST",
 	"AZELIO.ST",
 	"CAT-B.ST",

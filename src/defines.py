@@ -1,6 +1,7 @@
-from loguru import logger
-import pathlib, json
+import json
+import pathlib
 
+from loguru import logger
 
 PATH = "res/defines.json"
 
