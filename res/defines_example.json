@@ -1,0 +1,6 @@
+{
+  "TOKEN": "your_bot_token_here",
+  "PM_LIST": [
+	"your discord id here (but as an int, not as a string)"
+  ]
+}

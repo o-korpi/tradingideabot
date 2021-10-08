@@ -34,9 +34,9 @@ def init():
 		formatted_stocks_data = "\n".join([data_ for data_ in data])
 
 		# todo: this should be refactored, pure spaghetti
-
+		prev_nhnl = analyzer.get_yesterdays_nhnl()
 		text = f"""
-			S&P 500 NH-NL: {analyzer.get_snp500_nh_nl_data()} ({analyzer.get_yesterdays_nhnl()}) \n\n
+			S&P 500 NH-NL: {analyzer.get_snp500_nh_nl_data()} ({prev_nhnl}) \n\n
 			Trade Ideas: \n{formatted_stocks_data}\n\n
 		"""
 
