@@ -3,14 +3,12 @@ from src import logger, defines
 from src.bot import bot
 
 
-def run():
+def run(event, context):
 	lgr.info("Starting")
 	logger.init()
-
 	defines.init()
-
 	bot.init()
 
 
 if __name__ == '__main__':
-	run()
+	run(0, 0)
